@@ -1,3 +1,5 @@
+<!--Bradley Alex Sedig-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,10 +10,13 @@
     <link rel = "stylesheet" href= "Style.css"/>
 </head>
 <body style="background-color: rgb(16, 16, 17); margin: 0;">
-     background-color: rgb(16, 16, 17);
-    margin: 0;
+     <!--Create a backround for the body-->
+
     <center>
+        <!--Center the elements below-->
+
     <h1 style= "color: azure;">  Next launch </h1>
+    <!--Add a header within the body with text color-->
     <p style="background-color: rgb(243, 94, 94);
               display: inline-flex;
               align-items: center;
@@ -22,6 +27,9 @@
               width: 250px;
               margin: 0;"
               id = "countdown">10</p>
+              <!--Create a paragraph with a red backround color and shape of a set width and height, with a set font size and alighment.
+                  id = countdown creates a new variable called countdown to display as text in the paragraph, and I set it to 10.
+              -->
     
     
     <h1 style="color: azure;"> Rockets launched </h1>
@@ -35,8 +43,14 @@
               width: 250px;
               margin: 0;" 
               id = "RocketsLaunched" >0</p>
-    <Script>
-                const StartingTime = 10;
+              <!--Create a paragraph with a backround color and shape of a set width and height, with a set font size and alighment.
+                  id = RocketsLaunched creates a new variable called RocketsLaunched to display as text in the paragraph, and I set it to 10.
+              -->
+              
+
+              <!--Below is the script and function for the countdown.-->
+    <Script>     
+                const StartingTime = 10; 
                 let time = StartingTime;
                 let ResetTime = 1;
                 let RocketsLaunched = 0;
@@ -44,6 +58,7 @@
                 const Launchcount = document.getElementById("RocketsLaunched")
                 let finishedMission = false;
                 Boolean(finishedMission);
+                
                 
                 setInterval(RunCountDown, 1000);
                 function RunCountDown()
@@ -75,6 +90,13 @@
                     }
                 }
     </Script>   
+
+    <!--The function is called every second and decreases time by one.
+        Time Starts and resets at starting time and the variable "seconds" stores the current count.
+        I set the countdown id within my paragraph to display whatever the seconds variable is at on screen.
+        The timer resets back to starting time and increases the launchCount variable by 1 each reset.
+        When three rockets are launched, mission success is written to the screen -->
+    
     
     </center>
 </body>
