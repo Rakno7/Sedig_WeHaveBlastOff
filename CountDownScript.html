@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+    <link rel = "stylesheet" href= "Style.css"/>
+</head>
+<body style="background-color: rgb(16, 16, 17); margin: 0;">
+     background-color: rgb(16, 16, 17);
+    margin: 0;
+    <center>
+    <h1 style= "color: azure;">  Next launch </h1>
+    <p style="background-color: rgb(243, 94, 94);
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              font-size:  75px;
+              font-weight: 200;
+              height: 170px;
+              width: 250px;
+              margin: 0;"
+              id = "countdown">10</p>
+    
+    
+    <h1 style="color: azure;"> Rockets launched </h1>
+    <p style="background-color: rgb(91, 91, 104);
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              font-size:  75px;
+              font-weight: 200;
+              height: 170px;
+              width: 250px;
+              margin: 0;" 
+              id = "RocketsLaunched" >0</p>
+    <Script>
+                const StartingTime = 10;
+                let time = StartingTime;
+                let ResetTime = 1;
+                let RocketsLaunched = 0;
+                const count = document.getElementById("countdown");
+                const Launchcount = document.getElementById("RocketsLaunched")
+                let finishedMission = false;
+                Boolean(finishedMission);
+                
+                setInterval(RunCountDown, 1000);
+                function RunCountDown()
+                {
+                    
+                    const Seconds = time
+                    if(Seconds>=0 && Launchcount.innerHTML != 3)
+                    {
+                        ResetTime = 1;
+                        count.innerHTML = `${Seconds}`;
+                        time--;
+                    }
+                    if(Seconds <= 0 && Launchcount.innerHTML != 3)
+                    {
+                        count.innerHTML = "0";
+                        ResetTime--;
+                    }
+                    if(Launchcount.innerHTML == 3 && !finishedMission)
+                    {
+                        count.innerHTML = "0";
+                        document.write("Blast off! You have successfully launched all three rockets")
+                        finishedMission = true;
+                    }
+                    if(ResetTime == 0)
+                    {
+                        Launchcount.innerHTML ++;
+                        time = StartingTime;
+                        ResetTime = 1;
+                    }
+                }
+    </Script>   
+    
+    </center>
+</body>
+</html>
