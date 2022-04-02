@@ -50,44 +50,87 @@
 
               <!--Below is the script and function for the countdown.-->
     <Script>     
+                //This is the Time the timer will start at and reset to.
                 const StartingTime = 10; 
+
+                //time is the variable which will store the current time, which will start at the starting time.
                 let time = StartingTime;
+
+                //The ammount of time to pass before the timer resets from 0 back to the starting time.
                 let ResetTime = 1;
+
+                //This stores how many times the timer has been reset. 
                 let RocketsLaunched = 0;
+
+                //changes to this variable will update the countdown variable within the paragragh above.
                 const count = document.getElementById("countdown");
+
+                //changes to this variable will update the RocketLauched variable within the paragragh above.
                 const Launchcount = document.getElementById("RocketsLaunched")
+
+                //finished mission is called when the timer resets three times, and stops the print message from repeating infinitely
                 let finishedMission = false;
                 Boolean(finishedMission);
+                //do I need to do this?
                 
-                
+                //Sets the intreval at which the function is called.
                 setInterval(RunCountDown, 1000);
+
+                //this is the timer
                 function RunCountDown()
                 {
-                    
+                    //Seconds will also keep track of the count.
                     const Seconds = time
+
+                    //As long as Seconds is greater then 0 and hasnt launched 3 times, the timer will countdown and this block will loop
                     if(Seconds>=0 && Launchcount.innerHTML != 3)
                     {
+                        //Reset ResetTime back to 1 when the timer is greater then 0.
                         ResetTime = 1;
+
+                        //Update the countdown paragraph text to display the seconds on screen.
                         count.innerHTML = `${Seconds}`;
+
+                        //decrease time by 1 at the end of each loop. 
                         time--;
                     }
+
+                    //When the Seconds count is 0 or less and 3 rockets have not been launched, this block will loop
                     if(Seconds <= 0 && Launchcount.innerHTML != 3)
                     {
+                        //Display 0 instead of "seconds", just incase the timer is -1.
                         count.innerHTML = "0";
+
+                        //reset time will decrease by one
                         ResetTime--;
                     }
-                    if(Launchcount.innerHTML == 3 && !finishedMission)
-                    {
-                        count.innerHTML = "0";
-                        document.write("Blast off! You have successfully launched all three rockets")
-                        finishedMission = true;
-                    }
+
+                    //When the timer and ResetTime are both 0 or less this will run and will not loop.
                     if(ResetTime == 0)
                     {
+                        //Updates the RocketsLauched paragraph text to increase by 1, if three rockets are launched the mission will succeed.
                         Launchcount.innerHTML ++;
+
+                        //resets time to 10, the starting time, so the countdown can start back over.
                         time = StartingTime;
+
+                        //ResetTime is no longer equal to 0, so the code within this condition no longer plays and the timer resumes. 
                         ResetTime = 1;
                     }
+
+                    //When three rockets have been launched and the finishedMission is false, this will not loop. 
+                    if(Launchcount.innerHTML == 3 && !finishedMission)
+                    {
+                        //Sets the countdown paragraph text to read 0;
+                        count.innerHTML = "0";
+
+                        //Writes a message to the screen.
+                        document.write("Blast off! You have successfully launched all three rockets")
+
+                        //sets finishedMission true so that this condition is no longer met and the loop and timer stop. 
+                        finishedMission = true;
+                    }
+                    
                 }
     </Script>   
 
@@ -99,5 +142,6 @@
     
     
     </center>
+    <!--Thats all I need centered-->
 </body>
 </html>
