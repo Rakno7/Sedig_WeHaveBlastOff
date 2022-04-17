@@ -2,146 +2,274 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Countdown</title>
-    <link rel = "stylesheet" href= "Style.css"/>
+    <link rel="stylesheet" href="Style.css" />
 </head>
-<body style="background-color: rgb(16, 16, 17); margin: 0;">
-     <!--Create a backround for the body-->
 
-    <center>
-        <!--Center the elements below-->
+<body style="background-color: rgb(12, 13, 15); margin: 0;">
+    <!--Create a backround for the body-->
 
-    <h1 style= "color: azure;">  Next launch </h1>
+    <h1 style="color: azure; align-items: center; justify-content: center;"> Preparing to launch </h1>
     <!--Add a header within the body with text color-->
-    <p style="background-color: rgb(243, 94, 94);
+    <p style="background-color: rgba(243, 94, 94, 0.774);
               display: inline-flex;
               align-items: center;
               justify-content: center;
               font-size:  75px;
               font-weight: 200;
-              height: 170px;
-              width: 250px;
-              margin: 0;"
-              id = "countdown">10</p>
-              <!--Create a paragraph with a red backround color and shape of a set width and height, with a set font size and alighment.
+              height: 70px;
+              width: 100px;
+              margin: 0;" id="countdown">10</p>
+    <!--Create a paragraph with a red backround color and shape of a set width and height, with a set font size and alighment.
                   id = countdown creates a new variable called countdown to display as text in the paragraph, and I set it to 10.
               -->
-    
-    
-    <h1 style="color: azure;"> Rockets launched </h1>
+
+
+
+    <!--Center the elements below-->
+
+
+
+
+
+    <h1 style="color: azure;"> </h1>
     <p style="background-color: rgb(91, 91, 104);
               display: inline-flex;
+              
               align-items: center;
               justify-content: center;
               font-size:  75px;
               font-weight: 200;
+              opacity: 0;
               height: 170px;
-              width: 250px;
-              margin: 0;" 
-              id = "RocketsLaunched" >0</p>
-              <!--Create a paragraph with a backround color and shape of a set width and height, with a set font size and alighment.
+              width: 100px;
+              margin: 0;" id="RocketsLaunched">0</p>
+    <!--Create a paragraph with a backround color and shape of a set width and height, with a set font size and alighment.
                   id = RocketsLaunched creates a new variable called RocketsLaunched to display as text in the paragraph, and I set it to 10.
               -->
-              
 
-              <!--Below is the script and function for the countdown.-->
-    <Script>     
-                //This is the Time the timer will start at and reset to.
-                const StartingTime = 10; 
+    <h1 style="color: azure;"> </h1>
+    <!--Add a header within the body with text color-->
+    <p style="background-color: rgb(104, 104, 112);
+                        display: inline-flex;
+                        align-items: center;
+                        opacity: 1;
+                        justify-content: center;
+                        font-size:  45px;
+                        font-weight: 200;
+                        height: 100px;
+                        width: 300px;
+                        margin: 0;" id="Warning">10</p>
+    <!--Below is the script and function for the countdown.-->
 
-                //time is the variable which will store the current time, which will start at the starting time.
-                let time = StartingTime;
+    <Script>
+        let Posy = 800
 
-                //The ammount of time to pass before the timer resets from 0 back to the starting time.
-                let ResetTime = 1;
+        let Posx = 200
 
-                //This stores how many times the timer has been reset. 
-                let RocketsLaunched = 0;
+        let OpacityTimer = 0
 
-                //changes to this variable will update the countdown variable within the paragragh above.
-                const count = document.getElementById("countdown");
+        let speedY = 0.1
 
-                //changes to this variable will update the RocketLauched variable within the paragragh above.
-                const Launchcount = document.getElementById("RocketsLaunched")
+        var launch = false
 
-                //finished mission is called when the timer resets three times, and stops the print message from repeating infinitely
-                let finishedMission = false;
-                Boolean(finishedMission);
-                //do I need to do this?
-                
-                //Sets the intreval at which the function is called.
-                setInterval(RunCountDown, 1000);
+        var RocketReset = false
 
-                //this is the timer
-                function RunCountDown()
-                {
-                    //Seconds will also keep track of the count.
-                    const Seconds = time
+        var colorTimer = 5
 
-                    //As long as Seconds is greater then 0 and hasnt launched 3 times, the timer will countdown and this block will loop
-                    if(Seconds>=0 && Launchcount.innerHTML != 3)
-                    {
-                        //Reset ResetTime back to 1 when the timer is greater then 0.
-                        ResetTime = 1;
+        //This is the Time the timer will start at and reset to.
+        const StartingTime = 10;
 
-                        //Update the countdown paragraph text to display the seconds on screen.
-                        count.innerHTML = `${Seconds}`;
+        //time is the variable which will store the current time, which will start at the starting time.
+        let time = StartingTime;
 
-                        //decrease time by 1 at the end of each loop. 
-                        time--;
-                    }
+        //The ammount of time to pass before the timer resets from 0 back to the starting time.
+        let ResetTime = 0.5;
 
-                    //When the Seconds count is 0 or less and 3 rockets have not been launched, this block will loop
-                    if(Seconds <= 0 && Launchcount.innerHTML != 3)
-                    {
-                        //Display 0 instead of "seconds", just incase the timer is -1.
-                        count.innerHTML = "0";
+        //This stores how many times the timer has been reset. 
+        let RocketsLaunched = 0;
 
-                        //reset time will decrease by one
-                        ResetTime--;
-                    }
+        //changes to this variable will update the countdown variable within the paragragh above.
+        const count = document.getElementById("countdown");
 
-                    //When the timer and ResetTime are both 0 or less this will run and will not loop.
-                    if(ResetTime == 0)
-                    {
-                        //Updates the RocketsLauched paragraph text to increase by 1, if three rockets are launched the mission will succeed.
-                        Launchcount.innerHTML ++;
+        //changes to this variable will update the RocketLauched variable within the paragragh above.
+        const Launchcount = document.getElementById("RocketsLaunched")
 
-                        //resets time to 10, the starting time, so the countdown can start back over.
-                        time = StartingTime;
+        //changes to this variable will update the Warning variable within the paragragh above.
+        const Warning = document.getElementById("Warning")
 
-                        //ResetTime is no longer equal to 0, so the code within this condition no longer plays and the timer resumes. 
-                        ResetTime = 1;
-                    }
+        //finished mission is called when the timer resets three times, and stops the print message from repeating infinitely
+        let finishedMission = false;
+        Boolean(finishedMission);
+        //do I need to do this?
 
-                    //When three rockets have been launched and the finishedMission is false, this will not loop. 
-                    if(Launchcount.innerHTML == 3 && !finishedMission)
-                    {
-                        //Sets the countdown paragraph text to read 0;
-                        count.innerHTML = "0";
+        //Sets the intreval at which the function is called.
+        setInterval(RunCountDown, 1000);
+        setInterval(RunMotion, 20);
 
-                        //Writes a message to the screen.
-                        document.write("Blast off! You have successfully launched all three rockets")
-
-                        //sets finishedMission true so that this condition is no longer met and the loop and timer stop. 
-                        finishedMission = true;
-                    }
-                    
+        //separate function for element motion so it updates quicker then the timer. 
+        function RunMotion() {
+            //set the opatity of the rocket to fade out
+            if (launch) {
+                if (OpacityTimer > 0) {
+                    OpacityTimer -= 0.005
+                    Launchcount.style.opacity = OpacityTimer
                 }
-    </Script>   
+                //move the rocket up the screen
+                Posy -= 5;
+                //set the element position on the y to Posy
+                setXY();
+            }
+            if (!launch) {
+                //set opacity of rocket to fade in
+                if (OpacityTimer < 1) {
+                    OpacityTimer += 0.005
+                    Launchcount.style.opacity = OpacityTimer
+                }
+                //set rocket position back on the y
+                //move rocket sideways to prepare for launch
+                Posx += 0.2
+                Posy = 600
+                //set element position
+                setXY();
+                if (launch) {
+                    //reset the flashing warning timer
+                    colorTimer = 5
+                }
+                //
+                if (count.innerHTML <= 5 && count.innerHTML > 0 && !launch) {
+
+                    if (colorTimer < 0) {
+                        colorTimer = 5
+                    }
+                    //when the timer is half way through the color timer will decrease
+                    //each whole number it lands on will change the color
+                    if (colorTimer <= 5 && colorTimer > 4) {
+                        //change the color
+                        Warning.style.backgroundColor = "rgb(224, 31, 31)";
+                    }
+                    if (colorTimer <= 4 && colorTimer > 3) {
+                        Warning.style.backgroundColor = "rgb(91, 91, 104)";
+                    }
+                    if (colorTimer <= 3 && colorTimer > 2) {
+                        Warning.style.backgroundColor = "rgb(224, 31, 31)";
+                    }
+                    if (colorTimer <= 2 && colorTimer > 1) {
+                        Warning.style.backgroundColor = "rgb(91, 91, 104)";
+                    }
+                    if (colorTimer <= 1) {
+                        Warning.style.backgroundColor = "rgb(224, 31, 31)";
+                    }
+                    //decreases the timer
+                    colorTimer -= 0.01
+                }
+            }
+        }
+
+        //this is the timer
+        function RunCountDown() {
+
+            //Seconds will also keep track of the count.
+            const Seconds = time
+
+
+
+
+            //As long as Seconds is greater then 0 and hasnt launched 3 times, the timer will countdown and this block will loop
+            if (Seconds >= 0) {
+                //Reset ResetTime back to 1 when the timer is greater then 0.
+                ResetTime = 0.5;
+
+                //Update the countdown paragraph text to display the seconds on screen.
+                count.innerHTML = Seconds;
+
+                //decrease time by 1 at the end of each loop. 
+                time--;
+            }
+
+            //When the Seconds count is 0 or less and 3 rockets have not been launched, this block will loop
+            if (launch) {
+                Warning.innerHTML = "Takeoff!";
+                //Display 0 instead of "seconds", just incase the timer is -1.
+                count.innerHTML = "0";
+            }
+
+            if (Seconds <= 0) {
+
+
+                //reset time will decrease by one
+                launch = true
+                ResetTime -= 0.1;
+            }
+
+            //When the timer and ResetTime are both 0 or less this will run and will not loop.
+            if (ResetTime <= 0) {
+                //Updates the RocketsLauched paragraph text to increase by 1, if three rockets are launched the mission will succeed.
+                Launchcount.innerHTML++;
+                Posx = 200
+                launch = false
+
+                //resets time to 10, the starting time, so the countdown can start back over.
+                time = StartingTime;
+
+                //ResetTime is no longer equal to 0, so the code within this condition no longer plays and the timer resumes. 
+                ResetTime = 0.5;
+            }
+
+            if (count.innerHTML <= 5 && count.innerHTML > 3) {
+
+
+                //Sets the countdown paragraph text to read 0;
+                Warning.innerHTML = "Warning";
+                //Warning.style.opacity
+
+                //when countdown is halfway display warning 
+            }
+            if (count.innerHTML <= 3 && count.innerHTML > 0) {
+                //Sets the countdown paragraph text to read 0;
+                Warning.innerHTML = "Launch in:" + " " + Seconds;
+
+                //Writes a message to the screen.
+                //document.write("Blast off! You have successfully launched all three rockets")
+
+                //sets finishedMission true so that this condition is no longer met and the loop and timer stop. 
+                //finishedMission = true;
+            }
+            if (count.innerHTML > 5 && !launch) {
+
+                //Sets the countdown paragraph text to read 0;
+                Warning.innerHTML = "Stand by";
+                Warning.style.backgroundColor = "rgb(104, 104, 112)";
+                //Writes a message to the screen.
+                //document.write("Blast off! You have successfully launched all three rockets")
+
+                //sets finishedMission true so that this condition is no longer met and the loop and timer stop. 
+                //finishedMission = true;
+            }
+
+        }
+        function setXY() {
+            //then I set the elements position on the page to the x and y value
+            Launchcount.style.position = 'fixed'
+            Launchcount.style.left = Posx + "px"
+            Launchcount.style.top = Posy + "px"
+        }
+    </Script>
 
     <!--The function is called every second and decreases time by one.
         Time Starts and resets at starting time and the variable "seconds" stores the current count.
         I set the countdown id within my paragraph to display whatever the seconds variable is at on screen.
         The timer resets back to starting time and increases the launchCount variable by 1 each reset.
         When three rockets are launched, mission success is written to the screen -->
-    
-    
-    </center>
+
+
+
     <!--Thats all I need centered-->
 </body>
+
 </html>
